@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pop Out I 2</title>
+  <script>
+    window.onload = function () {
+      var aBtn = document.getElementsByTagName('input');
+
+      // Loops of the form for (let x...) create a fresh binding for x in each iteration.
+      // This applies to all three kinds of for loop: for–of, for–in, and the old-school C kind with semicolons.
+      for (let i = 0; i < aBtn.length; i++) {
+        aBtn[i].onclick = function () {
+          alert(i);
+        };
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <input type="button" value="aaa">
+  <input type="button" value="bbb">
+  <input type="button" value="ccc">
+  <input type="button" value="ddd">
+</body>
+
+</html>

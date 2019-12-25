@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Array Spread</title>
+  <script>
+    let arr = [12, 5, 8, 99, 27];
+
+    // ...arr = 12, 5, 8, 99, 27
+
+    function sum(a, b, c, d, e) {
+      return a+b+c+d+e;
+    }
+
+    // alert(sum(arr[0], arr[1], ...))
+    alert(sum(...arr));
+    // alert(sum(12, 5, 8, 99, 27));
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
