@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reduce 2</title>
+  <script>
+    let arr = [12, 66, 81, 92];
+
+    let res = arr.reduce((tmp, item, index) => {
+      if(index < arr.length - 1) {
+        return tmp + item;
+      } else {
+        return (tmp + item)/arr.length;
+      }
+    });
+
+    alert(res);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

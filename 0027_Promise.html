@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promise</title>
+  <script src="jquery.min.js"></script>
+  <script>
+    // Just to demonstrate how Promise is used ($.ajax already returns an object with a property of promise)
+    let p = new Promise(function(resolve, reject) {
+      $.ajax({
+        url: 'data/1.json',
+        dataType: 'json',
+        success(data) {
+          resolve(data);
+        },
+        error(res) {
+          reject(res);
+        } 
+      })
+    });
+
+    p.then(function(data) {
+      alert('Success!');
+      console.log(data);
+    }, function(res) {
+      alert('Fail!');
+      console.log(res);
+    });
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

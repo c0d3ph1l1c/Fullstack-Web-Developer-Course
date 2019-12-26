@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reduce</title>
+  <script>
+    let arr = [12, 66, 81, 92];
+
+    // Reduce callback's arguments: accumulator, curr, index, array
+    // Last argument of reduce = initial value
+    let res = arr.reduce(function (tmp, item, index) {
+      alert(`第${index}次, ${tmp}+${item}`);
+      return tmp + item
+    });
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

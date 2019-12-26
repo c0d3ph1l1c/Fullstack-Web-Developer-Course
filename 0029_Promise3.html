@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promise 3</title>
+  <script src="jquery.min.js"></script>
+  <script>
+    Promise.all([
+      $.ajax({url: 'data/1.json', dataType: 'json'}),
+      $.ajax({url: 'data/2.json', dataType: 'json'}),
+      $.ajax({url: 'data/3.json', dataType: 'json'}),
+    ]).then((arr) => {
+      let [data1, data2, data3] = arr;
+
+      console.log(data1, data2, data3);
+    }, (res) => { alert('Error!'); });
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

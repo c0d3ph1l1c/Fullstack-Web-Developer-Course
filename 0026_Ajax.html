@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ajax</title>
+  <script src="jquery.min.js"></script>
+  <script>
+    // Callback hell
+    $.ajax({
+      url: 'data/1.json',
+      dataType: 'json',
+      success(data1) {
+        $.ajax({
+          url: 'data/2.json',
+          dataType: 'json',
+          success(data2) {
+            $.ajax({
+              url: 'data/3.json',
+              dataType: 'json',
+              success(data3) {
+                console.log(data1, data2, data3);
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

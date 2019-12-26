@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    let arr = [100, 98, 37, 28, 19, 96, 56, 67];
+
+    // Map callback's arguments: item, index, array
+    // let res = arr.map(function(item) {
+    //   if(item >= 60) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
+
+    let res = arr.map(item => item >= 60);
+
+    console.log(arr, res);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
