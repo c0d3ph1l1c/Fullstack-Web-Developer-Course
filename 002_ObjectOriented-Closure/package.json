@@ -1,0 +1,17 @@
+{
+  "name": "002_ObjectOriented-Closure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "browser.min.js",
+  "scripts": {
+    "build": "babel src -d dest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7"
+  }
+}
