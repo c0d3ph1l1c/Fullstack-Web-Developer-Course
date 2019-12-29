@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery.js"></script>
+  <script>
+    $(function() {
+      $('#btn1').click(() => {
+        $.ajax({
+          url: '/reg',
+          data: {
+            username: $('#user').val(),
+            password: $('#pass').val()
+          },
+          dataType: 'json'
+        }).then(
+          json => {
+            if(json.error) {
+              alert(json.msg);
+            } else {
+              alert('Registration success!');
+            }
+          }, 
+          err => {
+            alert('Registration error! Please refresh.')
+          }
+        );
+      });
+
+      $('#btn2').click(() => {
+        $.ajax({
+          url: '/login',
+          data: {
+            username: $('#user').val(),
+            password: $('#pass').val()
+          },
+          dataType: 'json'
+        }).then(
+          json => {
+            if(json.error) {
+              alert(json.msg);
+            } else {
+              alert('Login success!');
+            }
+          },
+          err => {
+            alert('Login error! Please refresh.')
+          }
+        );
+      });
+    });
+  </script>
+</head>
+<body>
+  Username: <input type="text" id="user"><br>
+  Password: <input type="password" id="pass"><br>
+  <input type="button" value="Register" id="btn1">
+  <input type="button" value="Login" id="btn2">
+</body>
+</html>
