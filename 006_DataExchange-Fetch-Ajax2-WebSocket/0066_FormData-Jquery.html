@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Data - JQuery</title>
+  <script src="jquery.js"></script>
+</head>
+<body>
+  <form id="form1" action="http://localhost:8080" method="post">
+    Username: <input type="text" name="user"><br>
+    Password: <input type="password" name="pass"><br>
+    File: <input type="file" name="f1"><br>
+    <input type="submit" value="Submit">
+  </form>
+  <script>
+    $('#form1').on('submit', function() {
+      let formdata = new FormData(this);
+
+      // Inform jquery not to process data nor set content-type
+      $.ajax({
+        url: this.action,
+        type: this.method,
+        data: formdata,
+        processData: false,
+        contentType: false
+      }).then(res => {
+        alert('Success!');
+      }, res => {
+        alert('Fail!');
+      });
+      
+      return false;
+    });
+  </script>
+</body>
+</html>

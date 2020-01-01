@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fetch Blob</title>
+  <script>
+    window.onload = function() {
+      let oBtn = document.getElementById('btn1');
+
+      oBtn.onclick = async function() {
+        let oImg = document.getElementById('img1')
+
+        // 1. Request data
+        let res = await fetch('data/1.jpg');
+
+        // 2. Parse response
+        let data = await res.blob(); 
+        let url = URL.createObjectURL(data);
+
+        oImg.src = url;
+
+        // Fetch will wait for all the data to come in before resolve (not suitable for large files like videos)
+      };
+    };
+  </script>
+</head>
+<body>
+  <input type="button" value="Read" id="btn1">
+  <img id="img1">
+</body>
+</html> 
