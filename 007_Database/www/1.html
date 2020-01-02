@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Form Register & Login</title>
+  <script src="jquery.js"></script>
+</head>
+<body>
+  Username: <input type="text" id="user"><br>
+  Password: <input type="password" id="pass"><br>
+  <input type="button" value="Register" id="reg">
+  <script>
+    $('#reg').click(async () => {
+      let data = await $.ajax({
+        url: 'http://localhost:8080/reg',
+        data: {
+          username: $('#user').val(),
+          password: $('#pass').val()
+        },
+      });
+
+      alert(data);
+    });
+  </script>
+</body>
+</html> 
