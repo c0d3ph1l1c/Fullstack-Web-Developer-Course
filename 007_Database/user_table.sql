@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 02, 2020 at 03:35 PM
--- Server version: 5.7.28
--- PHP Version: 7.3.12
+-- Generation Time: Jan 03, 2020 at 07:22 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `user_table` (
   `password` varchar(32) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_table`
@@ -45,7 +45,9 @@ INSERT INTO `user_table` (`ID`, `username`, `password`) VALUES
 (1, 'blue2', '654321'),
 (3, 'lisi', '111111'),
 (4, 'blue', '666666'),
-(11, 'blue3', '123456');
+(11, 'blue3', '123456'),
+(12, 'zhangsan', '654987'),
+(13, 'lisi2', '654321');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,10 +3,8 @@ const mysql = require('mysql');
 const url = require('url');
 const fs = require('fs');
 
-// 1. Connect to database server
-// In this case, wamp mysql server port is et to 3308 (by default 3306)
-// createConnection produce only 1 connection that can make only a single request at a time. If there is a heavy db request that takes time and there are also multiple client request, they will have to wait till it is resolved.  
-let db = mysql.createConnection({host: 'localhost', port: 3308, user: 'root', password: '', database: '20200102'});
+// 1. Create a pool of connections (connectionLimit: 10 - by default) that will be picked automatically for use if there are multiple client requests
+let db = mysql.createPool({host: 'localhost', port: 3308, user: 'root', password: '', database: '20200102'});
 
 // 2. Work with http
 http.createServer((req, res) => {

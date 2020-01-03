@@ -11,10 +11,23 @@
   Username: <input type="text" id="user"><br>
   Password: <input type="password" id="pass"><br>
   <input type="button" value="Register" id="reg">
+  <input type="button" value="Login" id="login">
   <script>
     $('#reg').click(async () => {
       let data = await $.ajax({
         url: 'http://localhost:8080/reg',
+        data: {
+          username: $('#user').val(),
+          password: $('#pass').val()
+        },
+      });
+
+      alert(data);
+    });
+
+    $('#login').click(async () => {
+      let data = await $.ajax({
+        url: 'http://localhost:8080/login',
         data: {
           username: $('#user').val(),
           password: $('#pass').val()
