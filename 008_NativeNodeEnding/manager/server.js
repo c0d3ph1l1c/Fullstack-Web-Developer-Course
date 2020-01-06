@@ -2,11 +2,45 @@ const db = require('./libs/database');
 const http = require('./libs/http');
 const {addRouter} = require('./libs/router');
 
-addRouter('get', '/aaa', async (res, get, post, files) => {
-  res.write('aaaaaaa');
+addRouter('get', '/list', async (res, get, post, files) => {
+  try {
+    let data = await db.query(`SELECT * FROM item_table`);
+    res.writeJson({error: 0, data});
+  } catch(e) {
+    res.writeJson({error: 1, msg: `database error`});
+  }
+
   res.end();
 });
-addRouter('get', '/user', async (res, get, post, files) => {
-  res.write(get['a'] + get['b']);
-  res.end();
+addRouter('post', '/add', async (res, get, post, files) => {
+  let {title, price, count} = post;
+
+  if(!title || !price || !count) {
+    res.writeJson({error: 1, msg: 'params invalid'});
+  } else {
+    price = Number(price);
+    count = Number(count);
+
+    if(isNaN(price) || isNaN(count)){
+      res.writeJson({error: 1, msg: 'params invalid'});
+    } else {
+      // Beware SQL injection
+      // await db.query(`INSERT INTO item_table (title, price, count) VALUES ('${title}', ${price}, ${count})`);
+      
+      try {
+        // SQL prepared statement to prevent injection
+        await db.query('INSERT INTO item_table (title, price, count) VALUES (?,?,?)', [title, price, count]);
+
+        res.writeJson({error: 0, msg: 'success'});
+      } catch(e) {
+        res.writeJson({error: 1, msg: `database error`});
+      }
+
+      res.end();
+    }
+  }
+});
+// Del as exercise
+addRouter('get', '/del', async (res, get, post, files) => {
+ 
 });

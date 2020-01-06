@@ -8,6 +8,11 @@ const {Form} = require('multiparty');
 const {HTTP_PORT, HTTP_ROOT, HTTP_UPLOAD} = require('../config');
 
 http.createServer((req, res) => {
+  res.writeJson = function(json) {
+    res.setHeader('content-type', 'application/json');
+    res.write(JSON.stringify(json));
+  }
+
   // 1. Parse request - GET, POST, FILE
   let {pathname, query} = url.parse(req.url, true);
 
