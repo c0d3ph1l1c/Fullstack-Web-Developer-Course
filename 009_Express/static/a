@@ -1,0 +1,1 @@
+this content will appear in browser at route '/a' if server.use(express.static('./static/')) is put above server.get('/a').
