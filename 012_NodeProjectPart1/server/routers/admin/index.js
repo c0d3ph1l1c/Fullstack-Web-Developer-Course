@@ -1,4 +1,5 @@
 const Router = require('koa-router');
+const fs = require('await-fs');
 const path = require('path');
 const common = require('../../libs/common');
 
@@ -62,7 +63,12 @@ router.get('/', async ctx => {
   ctx.redirect(`${HTTP_ROOT}/admin/banner`);
 });
 
-
+const fields = [
+      {title: '标题', name: 'title', type: 'text'},
+      {title: '图片', name: 'src', type: 'file'},
+      {title: '链接', name: 'href', type: 'text'},
+      {title: '序号', name: 'serial', type: 'number'},
+    ];
 
 router.get('/banner', async ctx => {
   const {HTTP_ROOT} = ctx.config;
@@ -71,14 +77,10 @@ router.get('/banner', async ctx => {
   
   await ctx.render('admin/table', {
     HTTP_ROOT,
+    type: 'view',
     datas,
     action: `${HTTP_ROOT}/admin/banner`,
-    fields: [
-      {title: '标题', name: 'title', type: 'text'},
-      {title: '图片', name: 'src', type: 'file'},
-      {title: '链接', name: 'href', type: 'text'},
-      {title: '序号', name: 'serial', type: 'number'},
-    ]
+    fields
   });  
 });
 
@@ -97,17 +99,36 @@ router.get('/banner/delete/:id', async ctx => {
   let {UPLOAD_DIR, HTTP_ROOT} = ctx.config;
 
   let data = await ctx.db.query('SELECT * FROM banner_table WHERE ID=?', [id]);
+  ctx.assert(data.length, 400, 'no data');
 
-  if(data.length == 0) {
-    ctx.body = 'no data';
-  } else {
-    let row = data[0];
+  let row = data[0];
 
-    await common.unlink(path.resolve(UPLOAD_DIR, row.src));
-    await ctx.db.query('DELETE FROM banner_table WHERE ID = ?', [id]);
+  await common.unlink(path.resolve(UPLOAD_DIR, row.src));
+  await ctx.db.query('DELETE FROM banner_table WHERE ID = ?', [id]);
 
-    ctx.redirect(`${HTTP_ROOT}/admin/banner`);
-  }
+  ctx.redirect(`${HTTP_ROOT}/admin/banner`);
+});
+
+router.get('/banner/modify/:id', async ctx => {
+  let {id} = ctx.params;
+  const {HTTP_ROOT} = ctx.config;
+
+  let data = await ctx.db.query('SELECT * FROM banner_table WHERE ID=?', [id]);
+  ctx.assert(data.length, 400, 'no data');
+
+  let row = data[0];
+
+  await ctx.render('admin/table', {
+    HTTP_ROOT,
+    type: 'modify',
+    old_data: row,
+    fields,
+    action: `${HTTP_ROOT}/admin/banner/modify/${id}`
+  });
+});
+
+router.post('/banner/modify/:id', async ctx => {
+  ctx.body = 'a';
 });
 
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 10, 2020 at 10:32 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jan 11, 2020 at 12:10 PM
+-- Server version: 5.7.28
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,7 +58,14 @@ CREATE TABLE IF NOT EXISTS `banner_table` (
   `href` varchar(32) NOT NULL,
   `serial` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `banner_table`
+--
+
+INSERT INTO `banner_table` (`ID`, `title`, `src`, `href`, `serial`) VALUES
+(1, '源码下载好', 'upload_fb226700ecb4a3070a4108f3fca03ef7', 'http://bing.cn/', 1);
 
 -- --------------------------------------------------------
 

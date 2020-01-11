@@ -21,6 +21,7 @@
     <li role="presentation"><a href="#">页面3</a></li>
   </ul>
   <!-- 表格 -->
+  <% if(type=='view') { %>
   <a href="#" class="btn btn-primary glyphicon glyphicon-plus" id="btn-add">添加</a>
   <table class="table">
     <thead>
@@ -46,21 +47,24 @@
             href="<%=HTTP_ROOT%>/admin/banner/delete/<%=data.ID%>" 
             class="btn btn-danger glyphicon glyphicon-trash"
             onclick="return confirm('你是否确定要删除？')"
-          >
-          删除</a>
-          <a href="#" class="btn btn-default glyphicon glyphicon-pencil">修改</a>
+          >删除</a>
+          <a 
+            href="<%=HTTP_ROOT%>/admin/banner/modify/<%=data.ID%>" 
+            class="btn btn-default glyphicon glyphicon-pencil"
+          >修改</a>
         </td>
       </tr>
       <% }) %>
     </tbody>
   </table>
+  <% } %>
 
   <!-- 添加 -->
   <div class="my-panel-shadow"></div>
   <div class="panel panel-default my-panel">
     <div class="panel-heading">
       <div class="panel-title">
-        添加
+        <%= type=='view'? '添加':'修改' %>
       </div>
     </div>
     <div class="panel-body">
@@ -70,7 +74,8 @@
         <div class="form-group">
           <label class="col-sm-2 control-label"><%=field.title%></label>
           <div class="col-sm-10">
-            <input type="<%=field.type%>" class="form-control" name="<%=field.name%>" placeholder="<%=field.title%>">
+            <input type="<%=field.type%>" class="form-control" <% if(type == 'modify') { %> value="<%= old_data[field.name] %>" <% } %> name="<%=field.name%>"
+              placeholder="<%=field.title%>">
           </div>
         </div>
         <% }) %>
@@ -108,4 +113,9 @@
     $('.my-panel, .my-panel-shadow').show();
   });
 </script>
+<% if(type == 'modify') { %>
+<script>
+  $('.my-panel, .my-panel-shadow').show();
+</script>
+<% } %>
 </html>
