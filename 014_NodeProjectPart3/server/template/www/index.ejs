@@ -112,9 +112,10 @@
                     <article class="excerpt excerpt-1">
                         <a class="focus" href="http://www.muzhuangnet.com/show/711.html" title="<%=article.title%>" target="_blank" draggable="false"><img class="thumb" data-original="<%=HTTP_ROOT%>/upload/<%=article.list_img_src%>" src="<%=HTTP_ROOT%>/upload/<%=article.list_img_src%>" alt="<%=article.title%>" draggable="false" style="display: inline;"></a>
                         <header>
-                            <a class="cat" href="<%=HTTP_ROOT%>/list/<%=article.catalog_ID%>" title="<%=article.catalog_ID%>" draggable="false"><%=article.catalog_ID%><i></i></a>
+                            <a class="cat" href="<%=HTTP_ROOT%>/list/<%=article.catalog_ID%>" title="<%=article.catalog_title%>" draggable="false"><%=article.catalog_title%><i></i></a>
                             <h2>
-                                <a href="http://www.muzhuangnet.com/show/711.html" title="<%=article.title%>" target="_blank" draggable="false"><%=article.title%></a>
+                                <a href="<%=HTTP_ROOT%>/article/<%=article.article_ID%>" title="<%=article.article_title%>"
+                                    target="_blank" draggable="false"><%=article.article_title%></a>
                             </h2>
                         </header>
                         <p class="meta">

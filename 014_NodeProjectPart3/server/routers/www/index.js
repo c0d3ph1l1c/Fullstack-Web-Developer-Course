@@ -6,7 +6,16 @@ router.get('', async ctx => {
   let {HTTP_ROOT} = ctx.config;
   let banners = await ctx.db.query('SELECT * FROM banner_table ORDER BY serial ASC');
   let catalogs = await ctx.db.query('SELECT * FROM catalog_table');
-  let articles = await ctx.db.query('SELECT * FROM article_table ORDER BY created_time DESC LIMIT 10');
+  let articles = await ctx.db.query(`
+    SELECT 
+    *, 
+    article_table.title AS article_title, 
+    catalog_table.title AS catalog_title,
+    article_table.ID AS article_ID 
+    FROM article_table
+    LEFT JOIN catalog_table ON article_table.catalog_ID=catalog_table.ID
+    ORDER BY article_table.created_time DESC LIMIT 10
+  `);
 
   articles.forEach(article => {
     let oDate = new Date(article.created_time*1000);
