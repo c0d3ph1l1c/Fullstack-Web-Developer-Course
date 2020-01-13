@@ -81,7 +81,7 @@ router.get('/delete/:id', async ctx => {
 router.get('/get/:id', async ctx => {
   let {id} = ctx.params;
 
-  let rows = await ctx.db.query('SELECT * FROM banner_table WHERE ID=?', [id]);
+  let rows = await ctx.db.query(`SELECT * FROM ${table} WHERE ID=?`, [id]);
 
   if(rows.length == 0) {
     ctx.body = {err: 1, msg: 'no this data'};
@@ -96,7 +96,7 @@ router.post('/modify/:id', async ctx => {
   let {UPLOAD_DIR, HTTP_ROOT} = ctx.config;
 
   // Original data
-  let rows = await ctx.db.query('SELECT src FROM banner_table WHERE ID=?', [id]);
+  let rows = await ctx.db.query(`SELECT * FROM ${table} WHERE ID=?`, [id]);
   ctx.assert(rows.length, 400, 'no this data');
 
   const old_src = rows[0].src;
@@ -118,7 +118,7 @@ router.post('/modify/:id', async ctx => {
     vals.push(path.basename(post.src[0].path));
   }
 
-  await ctx.db.query(`UPDATE banner_table SET ${
+  await ctx.db.query(`UPDATE ${table} SET ${
     keys.map(key=>(`${key}=?`)).join(', ')
   } WHERE ID=?`, [...vals, id]);
 
@@ -126,7 +126,7 @@ router.post('/modify/:id', async ctx => {
     await common.unlink(path.resolve(UPLOAD_DIR, old_src));
   }
 
-  ctx.redirect(`${HTTP_ROOT}/admin/banner`);
+  ctx.redirect(`${HTTP_ROOT}/admin/${page_type}`);
 });
 
 module.exports = router.routes();

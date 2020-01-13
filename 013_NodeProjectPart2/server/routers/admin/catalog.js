@@ -56,4 +56,55 @@ router.get('/delete/:id', async ctx => {
   ctx.redirect(`${HTTP_ROOT}/admin/${page_type}`);
 });
 
+router.get('/get/:id', async ctx => {
+  let {id} = ctx.params;
+
+  let rows = await ctx.db.query(`SELECT * FROM ${table} WHERE ID=?`, [id]);
+
+  if(rows.length == 0) {
+    ctx.body = {err: 1, msg: 'no this data'};
+  } else {
+    ctx.body = {err: 0, msg: 'success', data: rows[0]};
+  }
+});
+
+router.post('/modify/:id', async ctx => {
+  const post = ctx.request.fields;
+  let {id} = ctx.params;
+  let {UPLOAD_DIR, HTTP_ROOT} = ctx.config;
+
+  // Original data
+  let rows = await ctx.db.query(`SELECT * FROM ${table} WHERE ID=?`, [id]);
+  ctx.assert(rows.length, 400, 'no this data');
+
+  // const old_src = rows[0].src;
+
+  let keys = ['title'];
+  let vals = [];
+
+  keys.forEach(key => {
+    vals.push(post[key]);
+  });
+
+  // Handle the file separately
+  // let src_changed = false;
+  // if(post.src && post.src.length && post.src[0].size) {
+  //   src_changed = true;
+  // }
+  // if (src_changed) {
+  //   keys.push('src');
+  //   vals.push(path.basename(post.src[0].path));
+  // }
+
+  await ctx.db.query(`UPDATE ${table} SET ${
+    keys.map(key=>(`${key}=?`)).join(', ')
+  } WHERE ID=?`, [...vals, id]);
+
+  // if (src_changed) {
+  //   await common.unlink(path.resolve(UPLOAD_DIR, old_src));
+  // }
+
+  ctx.redirect(`${HTTP_ROOT}/admin/${page_type}`);
+});
+
 module.exports = router.routes();

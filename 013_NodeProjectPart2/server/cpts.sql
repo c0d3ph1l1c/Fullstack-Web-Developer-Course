@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 11, 2020 at 12:10 PM
--- Server version: 5.7.28
--- PHP Version: 7.3.12
+-- Generation Time: Jan 13, 2020 at 04:54 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,14 +58,17 @@ CREATE TABLE IF NOT EXISTS `banner_table` (
   `href` varchar(32) NOT NULL,
   `serial` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `banner_table`
 --
 
 INSERT INTO `banner_table` (`ID`, `title`, `src`, `href`, `serial`) VALUES
-(1, '源码下载好', 'upload_fb226700ecb4a3070a4108f3fca03ef7', 'http://bing.cn/', 1);
+(1, '源码下载好4', 'upload_723aeecf9b12cca39911b7fa6463b040', 'https://cn.bing.com/', 88),
+(2, '随便的第二个banner', 'upload_6d45e619b6c08f9d5c55b192e8efa4fb', 'http://google.com/', 2),
+(3, 'aa', 'upload_39991398cdc7fbcc2e7ffedf5979a222', 'http://aaaaa.com', 5),
+(4, 'qqqqq', 'upload_457055129da4aa26000044aa12fdbe1b', 'http://bing.cn/', 88);
 
 -- --------------------------------------------------------
 
@@ -78,7 +81,16 @@ CREATE TABLE IF NOT EXISTS `catalog_table` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `catalog_table`
+--
+
+INSERT INTO `catalog_table` (`ID`, `title`) VALUES
+(1, 'javascript'),
+(2, 'xhtml'),
+(3, 'node');
 
 -- --------------------------------------------------------
 
