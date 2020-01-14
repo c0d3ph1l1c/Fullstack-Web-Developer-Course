@@ -36,6 +36,23 @@ ejs(server, {
   debug: false
 });
 
+server.use(async (ctx, next) => {
+  let {HTTP_ROOT} = ctx.config;
+  try {
+    await next();
+
+    if(!ctx.body) {
+      await ctx.render('www/404', {
+        HTTP_ROOT
+      });
+    }
+  } catch(e) {
+    await ctx.render('www/404', {
+      HTTP_ROOT
+    });
+  }
+});
+
 // Router & Static
 let router = new Router();
 
