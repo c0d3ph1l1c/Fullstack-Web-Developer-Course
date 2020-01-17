@@ -1,0 +1,54 @@
+# Setting up Subversion server
+
+1. Install subversion
+  yum install subversion -y 
+
+2. Create directory
+  mkdir dir_path
+
+3. Initialize repository  
+  svnadmin create dir_path
+
+4. Configure the repository
+  conf/passwd
+  conf/svnserve.conf
+    anon-access = none
+    auth-access = write
+    password-db = passwd
+
+5. Start svnserve as daemon
+  svnserve -d -r dir_name
+
+6. Temporarily turn off firewall
+  CentOS 7 and above 
+    systemctl status firewalld
+    systemctl stop firewalld
+
+  CentOS 6 and below
+    iptables -F 
+    iptables -L
+
+7. Perform svn checkout at client
+  svn://ip_addr
+
+# Setting up Git server
+
+1. Install Git
+  yum install git -y 
+
+2. Create directory and navigate into it
+  mkdir dir_path
+  cd dir_path
+
+3. Init Git repository
+  git init --bare test.git
+
+4. Add system user
+  useradd blue
+  passwd blue
+
+5. Change ownership of git file 
+  chown -R blue:blue test.git
+
+6. Clone repo at client
+  git clone blue@ip_addr:/dir_name/test.git local_repo_name
