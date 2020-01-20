@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <input type="text" v-model="n1">+
+    <input type="text" v-model="n2">=
+    {{sum()}}
+  </div>
+</body>
+<script>
+  // complicated logics should be put into methods instead of template
+  let vm = new Vue({
+    el: '#div1',
+    data: {
+      n1: 0, n2: 0
+    },
+    methods: {
+      sum() {
+        return parseInt(this.n1) + parseInt(this.n2);
+      }
+    }
+  });
+</script>
+</html>

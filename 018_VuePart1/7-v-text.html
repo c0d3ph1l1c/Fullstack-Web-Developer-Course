@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <!-- <div v-text="'字符串: ' + str">
+    </div> -->
+    <!-- <div v-text="str">
+    </div> -->
+    <div v-html="str">
+    </div>
+  </div>
+</body>
+<script>
+  // Advisable to check the input before pass it to v-html (to avoid malicious script input)
+  let vm = new Vue({
+    el: '#div1',
+    data: {
+      str: `<p>19日下午，习近平总书记来到腾冲市清水乡三家村中寨司莫拉佤族村。在村里小卖部，习近平询问老板什么商品卖的比较畅销，主要是卖给游客还是寨里的人。老板笑着回答“什么都好卖，生意越来越好了，游客和寨里人都有”。</p><p>19日下午，习近平总书记来到腾冲市清水乡三家村中寨司莫拉佤族村。在村里小卖部，习近平询问老板什么商品卖的比较畅销，主要是卖给游客还是寨里的人。老板笑着回答“什么都好卖，生意越来越好了，游客和寨里人都有”。</p><p>19日下午，习近平总书记来到腾冲市清水乡三家村中寨司莫拉佤族村。在村里小卖部，习近平询问老板什么商品卖的比较畅销，主要是卖给游客还是寨里的人。老板笑着回答“什么都好卖，生意越来越好了，游客和寨里人都有”。</p>`
+    }
+  });
+</script>
+</html>

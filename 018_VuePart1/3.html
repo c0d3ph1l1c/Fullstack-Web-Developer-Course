@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <strong :title="age+'岁'">{{name}}</strong>
+    <img :src="url" alt="">
+  </div>
+</body>
+<script>
+  let vm = new Vue({
+    el: '#div1',
+    data: {
+      name: 'blue',
+      age: 18,
+      url: 'https://www.bing.com/sa/simg/hpc27.png'
+    }
+  });
+</script>
+</html>
