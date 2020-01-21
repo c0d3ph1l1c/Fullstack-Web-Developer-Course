@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+</head>
+<body>
+  <div id="div1">
+    <a href="#/a">Page 1</a>
+    <a href="#/b">Page 2</a>
+    <a href="#/c">Page 3</a>
+    <br>
+    文字
+    <!-- 1. Router container -->
+    <router-view></router-view>
+  </div>
+</body>
+<script>
+  // 2. Router table 
+  let router = new VueRouter({
+    routes: [
+      {
+        path: '/a',
+        component: {template: '<div>aaaaa</div>'}
+      },
+      {
+        path: '/b',
+        component: {template: '<div>bbbbb</div>'}
+      },
+      {
+        path: '/c',
+        component: {template: '<div>ccccc</div>'}
+      }
+    ]
+  });
+
+  let vm = new Vue({
+    el: '#div1',
+    data: {},
+    router
+  })
+</script>
+</html>

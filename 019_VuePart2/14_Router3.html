@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+  <style>
+    .links { overflow: hidden; }
+    .links .nav { float: left; color: #ccc; margin-right: 10px; }
+    .links .router-link-active { color: black; }
+  </style>
+</head>
+<body>
+  <div id="div1">
+    <div class="links">
+      <router-link class="nav" to="/news/aaa">Page 1</router-link>
+      <router-link class="nav" to="/b">Page 2</router-link>
+      <router-link class="nav" to="/c">Page 3</router-link>
+    </div>
+    <br>
+      文字
+    <!-- 1. Router container -->
+    <router-view></router-view>
+  </div>
+</body>
+<script>
+  // 2. Router table 
+  let router = new VueRouter({
+    routes: [
+      {
+        path: '/news/aaa/',
+        component: {
+          template: '<div>News 2</div>'
+        }
+      },
+      {
+        path: '/news/:id/',
+        component: {
+          template: '<div>News: {{$route.params.id}}</div>'
+        }
+      },
+      
+      {
+        path: '/b',
+        component: {template: '<div>bbbbb</div>'}
+      },
+      {
+        path: '/c',
+        component: {template: '<div>ccccc</div>'}
+      }
+    ]
+  });
+
+  let vm = new Vue({
+    el: '#div1',
+    data: {},
+    router
+  })
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+<body>
+  <div id="div1">
+    姓：<input type="text" v-model="familyName">
+    名：<input type="text" v-model="givenName">
+    <input type="text" v-model="name">
+  </div>
+</body>
+<script>
+  // Advantages of computed
+  // 1. Cached result - avoid re-computation (methods will recompute even without value change)
+  // 2. Allows both read(get) and write(set)
+  let vm = new Vue({
+    el: '#div1',
+    data: {
+      familyName: '张',
+      givenName: '三'
+    },
+    computed: {
+      name: {
+        get() {
+          return this.familyName + this.givenName;
+        }, 
+        set(value) {
+          this.familyName = value[0];
+          this.givenName = value.substring(1);
+        }
+      }
+    }
+  });
+</script>
+</html>
