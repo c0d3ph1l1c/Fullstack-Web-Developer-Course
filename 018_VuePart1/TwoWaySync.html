@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="div1">
+    <input type="text" v-model="name"><br>
     姓名：{{name}}<br>
     年龄: {{age}}
   </div>
@@ -36,11 +37,24 @@
   render();
 
   function render() {
+    // Render
     el.innerHTML = template.replace(/\{\{\w+\}\}/g, str => {
       str = str.substring(2, str.length-2);
 
       return _data[str];
     });
+
+    // Find all v-model
+    Array.from(el.getElementsByTagName('input'))
+      .filter(ele => ele.getAttribute('v-model'))
+      .forEach(input => {
+        let name = input.getAttribute('v-model');
+        input.value = _data[name];
+
+        input.oninput = function() {
+          data[name] = this.value;
+        }
+      });
   }
 </script>
 </html>
